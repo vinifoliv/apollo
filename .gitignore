@@ -1,0 +1,106 @@
+# =====================================
+# Arquivos e pastas gerais do Python
+# =====================================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ============================
+# Ambientes virtuais
+# ============================
+.venv/
+venv/
+env/
+ENV/
+.ENV/
+env.bak/
+venv.bak/
+
+# ============================
+# Logs e arquivos temporários
+# ============================
+*.log
+*.pot
+*.pyproj
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
+
+# ============================
+# Configurações locais
+# ============================
+*.env
+.env.*
+!.env.example
+
+# ============================
+# Cache e builds
+# ============================
+build/
+dist/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ============================
+# Testes e cobertura
+# ============================
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.tox/
+.pytest_cache/
+
+# ============================
+# Ferramentas de documentação
+# ============================
+docs/_build/
+doc/_build/
+site/
+
+# ============================
+# IDEs e editores
+# ============================
+# PyCharm
+.idea/
+# VS Code
+.vscode/
+# Spyder
+.spyderproject
+.spyproject
+# Jupyter
+.ipynb_checkpoints
+# Rope
+.ropeproject
+
+# ============================
+# Arquivos do MyPy, Ruff, etc.
+# ============================
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# ============================
+# Configurações do Docker (se houver)
+# ============================
+*.pid
+docker-compose.override.yml
