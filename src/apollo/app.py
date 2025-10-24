@@ -1,12 +1,11 @@
-from event_bus.event_bus import EventBus
-from pns.pns import PNS
-from prefrontal_cortex.prefrontal_cortex import PrefrontalCortex
-from thalamus.thalamus import Thalamus
+from src.apollo.pns.pns import PNS
+from src.apollo.prefrontal_cortex.prefrontal_cortex import PrefrontalCortex
+from src.apollo.thalamus.thalamus import Thalamus
 
-event_bus = EventBus()
 
-pns = PNS(event_bus)
-prefrontal_cortex = PrefrontalCortex(event_bus)
-thalamus = Thalamus(event_bus)
+thalamus = Thalamus()
+pns = PNS(thalamus)
+prefrontal_cortex = PrefrontalCortex(thalamus)
 
-pns.listen()
+if __name__ == "__main__":
+    pns.listen()

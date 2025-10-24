@@ -1,7 +1,10 @@
-from apollo.common.brain_region import BrainRegion
-from event_bus.event_bus import EventBus
+from typing import List
+from ..common.impulse import Impulse
 
 
-class Thalamus(BrainRegion):
-    def __init__(self, event_bus: EventBus):
-        super(name="thalamus", event_bus=event_bus)
+class Thalamus:
+    def __init__(self):
+        self.impulses: List[Impulse] = []
+
+    def receive_impulse(self, impulse: Impulse):
+        self.impulses.append(impulse)
