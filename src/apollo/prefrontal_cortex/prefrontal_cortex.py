@@ -3,10 +3,14 @@ from apollo.hippocampus.hippocampus import Hippocampus
 from apollo.shared.impulse import Impulse
 from apollo.shared.impulse_type import ImpulseType
 from apollo.thalamus.thalamus import Thalamus
+from apollo.prefrontal_cortex.classifier import Classifier
 
 
 class PrefrontalCortex:
-    def __init__(self, hippocampus: Hippocampus, thalamus: Thalamus) -> None:
+    def __init__(
+        self, classifier: Classifier, hippocampus: Hippocampus, thalamus: Thalamus
+    ) -> None:
+        self._classifier: Final = classifier
         self._hippocampus: Final = hippocampus
         self._thalamus: Final = thalamus
 
@@ -21,4 +25,8 @@ class PrefrontalCortex:
             if impulse.artifact_uuid
             else None
         )
-        print("Prompt", prompt.value)
+        if prompt is None:
+            return print("No prompt")
+
+        interpretation = self._classifier.classify(prompt)
+        print("interpretation", interpretation)
