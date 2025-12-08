@@ -1,14 +1,26 @@
 from datetime import datetime
+from typing import override
+from uuid import uuid4, UUID
+
+from apollo.shared.artifact import Artifact
 
 
-class Prompt:
-    def __init__(self, value: str):
-        self.timestamp = datetime.now()
-        self.value = value
+class Prompt(Artifact):
+    def __init__(self, value: str) -> None:
+        self._uuid: UUID = uuid4()
+        self._timestamp: datetime = datetime.now()
+        self._value: str = value
 
-    @staticmethod
-    def from_raw(prompt: str):
-        return Prompt(value=prompt)
+    @property
+    @override
+    def uuid(self) -> UUID:
+        return self._uuid
 
-    def __str__(self) -> str:
-        return f"[{self.timestamp.isoformat()}] {self.value}"
+    @property
+    @override
+    def timestamp(self) -> datetime:
+        return self._timestamp
+
+    @property
+    def value(self) -> str:
+        return self._value
