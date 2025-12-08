@@ -1,11 +1,12 @@
-from src.apollo.pns.pns import PNS
-from src.apollo.prefrontal_cortex.prefrontal_cortex import PrefrontalCortex
-from src.apollo.thalamus.thalamus import Thalamus
+from apollo.peripheral_nervous_system import peripheral_nervous_system
+from apollo.prefrontal_cortex.prefrontal_cortex import PrefrontalCortex
+from apollo.thalamus.thalamus import Thalamus
 
 
 thalamus = Thalamus()
-pns = PNS(thalamus)
+peripheral_nervous_system = peripheral_nervous_system.PeripheralNervousSystem(thalamus)
 prefrontal_cortex = PrefrontalCortex(thalamus)
 
+
 if __name__ == "__main__":
-    pns.listen()
+    peripheral_nervous_system.listen()
