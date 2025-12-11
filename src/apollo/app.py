@@ -2,7 +2,9 @@ from apollo.hippocampus import hippocampus
 from apollo.peripheral_nervous_system.peripheral_nervous_system import (
     PeripheralNervousSystem,
 )
-from apollo.prefrontal_cortex.llama_classifier import LlamaClassifier
+from apollo.prefrontal_cortex.embedded_model.llama_embedded_model import (
+    LlamaEmbeddedModel,
+)
 from apollo.prefrontal_cortex.prefrontal_cortex import PrefrontalCortex
 from apollo.thalamus.thalamus import Thalamus
 
@@ -11,8 +13,8 @@ hippocampus = hippocampus.Hippocampus()
 thalamus = Thalamus()
 peripheral_nervous_system = PeripheralNervousSystem(hippocampus, thalamus)
 
-classifier = LlamaClassifier()
-prefrontal_cortex = PrefrontalCortex(classifier, hippocampus, thalamus)
+embedded_model = LlamaEmbeddedModel()
+prefrontal_cortex = PrefrontalCortex(embedded_model, hippocampus, thalamus)
 
 
 if __name__ == "__main__":

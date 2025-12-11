@@ -1,16 +1,20 @@
-from typing import Final
+from typing import Final, cast
 from apollo.hippocampus.hippocampus import Hippocampus
+from apollo.prefrontal_cortex.embedded_model.embedded_model import EmbeddedModel
 from apollo.shared.impulse import Impulse
 from apollo.shared.impulse_type import ImpulseType
+from apollo.shared.prompt import Prompt
 from apollo.thalamus.thalamus import Thalamus
-from apollo.prefrontal_cortex.classifier import Classifier
 
 
 class PrefrontalCortex:
     def __init__(
-        self, classifier: Classifier, hippocampus: Hippocampus, thalamus: Thalamus
+        self,
+        embedded_model: EmbeddedModel,
+        hippocampus: Hippocampus,
+        thalamus: Thalamus,
     ) -> None:
-        self._classifier: Final = classifier
+        self._embedded_model: Final = embedded_model
         self._hippocampus: Final = hippocampus
         self._thalamus: Final = thalamus
 
@@ -18,15 +22,17 @@ class PrefrontalCortex:
             type=ImpulseType.PROMPT_IS_READY, listener=self.interpret
         )
 
-    def interpret(self, impulse: Impulse):
-        print("Impulse received:", impulse.uuid, impulse.type, impulse.timestamp)
+    def interpret(self, impulse: Impulse) -> None:
         prompt = (
             self._hippocampus.recall(uuid=impulse.artifact_uuid)
             if impulse.artifact_uuid
             else None
         )
+
         if prompt is None:
             return print("No prompt")
 
-        interpretation = self._classifier.classify(prompt)
-        print("interpretation", interpretation)
+        tasks = self._embedded_model.analyze(prompt=cast(Prompt, prompt))
+        self._embedded_model.classify(tasks)
+
+        print(tasks)
