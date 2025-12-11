@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import override
 from uuid import UUID, uuid4
 
 from apollo.shared.artifact import Artifact
@@ -56,3 +57,30 @@ class Task:
 
     def is_classified(self) -> bool:
         return self._type != TaskType.UNCLASSIFIED
+
+    @override
+    def __repr__(self) -> str:
+        return (
+            f"Task("
+            f"uuid={self._uuid!r}, "
+            f"description={self._description!r}, "
+            f"type={self._type!r}, "
+            f"prompt={self._original_prompt!r}, "
+            f"dependencies_count={len(self._task_dependencies)}, "
+            f"artifact={self._artifact}"
+            f")"
+        )
+
+    @override
+    def __str__(self) -> str:
+        formatted_timestamp = self._timestamp.strftime("%Y-%m-%d %H:%M")
+        shortened_description= self._description[:47] + '...'
+
+        return (
+            f"Task ("
+            f"uuid: {self._uuid}"
+            f"timestamp: {formatted_timestamp}"
+            f"type: {self._type}"
+            f"description: {shortened_description}"
+            f")"
+        )

@@ -1,5 +1,6 @@
 from typing import cast, override
 import requests
+import json
 
 from apollo.prefrontal_cortex.embedded_model.embedded_model import EmbeddedModel
 from apollo.prefrontal_cortex.embedded_model.system_prompts.analyze_system_prompt import (
@@ -37,9 +38,7 @@ class LlamaEmbeddedModel(EmbeddedModel):
             error = cast(str, response.json())
             raise Exception(f"Failed to analyze user's prompt: {error}")
 
-        llama_tasks = cast(list[dict[str, str]], response.json()['response'])
-
-        print(llama_tasks)
+        llama_tasks= cast(list[dict[str, str]],json.loads(cast(str,response.json()['response'])))
 
         tasks = [Task(description=task['description'], task_dependencies=[], original_prompt=prompt) for task in llama_tasks]
 
@@ -70,12 +69,17 @@ class LlamaEmbeddedModel(EmbeddedModel):
             error = cast(str, response.json())
             raise Exception(f"Failed to classify tasks: {error}")
 
-        llama_tasks = cast(list[dict[str, str]], response.json()["response"])
+        llama_tasks = cast(list[dict[str, str]],
+                           json.loads(cast(str, response.json()["response"])))
+
+        print("Classification:", llama_tasks)
 
         for task in tasks:
-            llama_task= (next((llama_task for llama_task in
-                llama_tasks if llama_task['uuid'] ==
-                task.uuid), None))
+            llama_task= (
+                next(
+                    (llama_task for llama_task in llama_tasks if llama_task['uuid'] == str(task.uuid)),
+                    None)
+                )
 
             if llama_task is None:
                 return

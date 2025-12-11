@@ -33,6 +33,6 @@ class PrefrontalCortex:
             return print("No prompt")
 
         tasks = self._embedded_model.analyze(prompt=cast(Prompt, prompt))
+        self._embedded_model.classify(tasks)
 
-        print("TASKS")
         print(tasks)
