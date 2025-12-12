@@ -2,16 +2,12 @@ from typing import cast, override
 import requests
 import json
 
-from apollo.prefrontal_cortex.embedded_model.embedded_model import EmbeddedModel
-from apollo.prefrontal_cortex.embedded_model.system_prompts.analyze_system_prompt import (
-    analyze_system_prompt,
-)
-from apollo.prefrontal_cortex.embedded_model.system_prompts.classify_system_prompt import (
-    classify_system_prompt,
-)
-from apollo.shared.prompt import Prompt
-from apollo.shared.task import Task
-from apollo.shared.task_type import TaskType
+from apollo.prefrontal_cortex.interfaces.embedded_model import EmbeddedModel
+from apollo.prefrontal_cortex.utils.analyze_system_prompt import analyze_system_prompt
+from apollo.prefrontal_cortex.utils.classify_system_prompt import classify_system_prompt
+from apollo.shared.entities.prompt import Prompt
+from apollo.shared.entities.task import Task
+from apollo.shared.entities.task_type import TaskType
 
 
 class LlamaEmbeddedModel(EmbeddedModel):
@@ -30,23 +26,34 @@ class LlamaEmbeddedModel(EmbeddedModel):
                     "num_predict": 50,
                     "top_p": 0.9,
                     "repeat_penalty": 1.1,
-                }
-            }
+                },
+            },
         )
 
         if response.status_code != 200:
             error = cast(str, response.json())
             raise Exception(f"Failed to analyze user's prompt: {error}")
 
-        llama_tasks= cast(list[dict[str, str]],json.loads(cast(str,response.json()['response'])))
+        llama_tasks = cast(
+            list[dict[str, str]], json.loads(cast(str, response.json()["response"]))
+        )
 
-        tasks = [Task(description=task['description'], task_dependencies=[], original_prompt=prompt) for task in llama_tasks]
+        tasks = [
+            Task(
+                description=task["description"],
+                task_dependencies=[],
+                original_prompt=prompt,
+            )
+            for task in llama_tasks
+        ]
 
         return tasks
 
     @override
     def classify(self, tasks: list[Task]) -> None:
-        classifying_tasks = "\n".join(f"UUID: {task.uuid} DESCRIPTION: {task.description}" for task in tasks)
+        classifying_tasks = "\n".join(
+            f"UUID: {task.uuid} DESCRIPTION: {task.description}" for task in tasks
+        )
 
         response = requests.post(
             url="http://localhost:11434/api/generate",
@@ -62,28 +69,30 @@ class LlamaEmbeddedModel(EmbeddedModel):
                     "top_p": 0.9,
                     "repeat_penalty": 1.1,
                 },
-            }
+            },
         )
 
         if response.status_code != 200:
             error = cast(str, response.json())
             raise Exception(f"Failed to classify tasks: {error}")
 
-        llama_tasks = cast(list[dict[str, str]],
-                           json.loads(cast(str, response.json()["response"])))
-
-        print("Classification:", llama_tasks)
+        llama_tasks = cast(
+            list[dict[str, str]], json.loads(cast(str, response.json()["response"]))
+        )
 
         for task in tasks:
-            llama_task= (
-                next(
-                    (llama_task for llama_task in llama_tasks if llama_task['uuid'] == str(task.uuid)),
-                    None)
-                )
+            llama_task = next(
+                (
+                    llama_task
+                    for llama_task in llama_tasks
+                    if llama_task["uuid"] == str(task.uuid)
+                ),
+                None,
+            )
 
             if llama_task is None:
                 return
 
-            classification = TaskType(llama_task['classification'])
+            classification = TaskType(llama_task["classification"])
 
             task.classify_as(classification)

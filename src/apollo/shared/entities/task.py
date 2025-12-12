@@ -2,9 +2,9 @@ from datetime import datetime
 from typing import override
 from uuid import UUID, uuid4
 
-from apollo.shared.artifact import Artifact
-from apollo.shared.prompt import Prompt
-from apollo.shared.task_type import TaskType
+from apollo.shared.entities.artifact import Artifact
+from apollo.shared.entities.prompt import Prompt
+from apollo.shared.entities.task_type import TaskType
 
 
 class Task:
@@ -74,13 +74,13 @@ class Task:
     @override
     def __str__(self) -> str:
         formatted_timestamp = self._timestamp.strftime("%Y-%m-%d %H:%M")
-        shortened_description= self._description[:47] + '...'
+        shortened_description = self._description[:47] + "..."
 
         return (
             f"Task ("
-            f"uuid: {self._uuid}"
-            f"timestamp: {formatted_timestamp}"
-            f"type: {self._type}"
-            f"description: {shortened_description}"
+            f"uuid={self._uuid}, "
+            f"timestamp={formatted_timestamp}, "
+            f"type={self._type}, "
+            f"description={shortened_description}"
             f")"
         )
