@@ -3,7 +3,8 @@ import requests
 import json
 
 from apollo.prefrontal_cortex.interfaces.embedded_model import EmbeddedModel
-from apollo.prefrontal_cortex.utils import analyze_system_prompt, classify_system_prompt
+from apollo.prefrontal_cortex.utils.analyze_system_prompt import analyze_system_prompt
+from apollo.prefrontal_cortex.utils.classify_system_prompt import classify_system_prompt
 from apollo.shared.entities.prompt import Prompt
 from apollo.shared.entities.task import Task
 from apollo.shared.entities.task_type import TaskType
@@ -78,8 +79,6 @@ class LlamaEmbeddedModel(EmbeddedModel):
         llama_tasks = cast(
             list[dict[str, str]], json.loads(cast(str, response.json()["response"]))
         )
-
-        print("Classification:", llama_tasks)
 
         for task in tasks:
             llama_task = next(
