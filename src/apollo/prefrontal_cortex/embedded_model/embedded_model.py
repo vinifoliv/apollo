@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-from apollo.shared.prompt import Prompt
-from apollo.shared.task import Task
+from apollo.shared.entities.prompt import Prompt
+from apollo.shared.entities.task import Task
 
 
 class EmbeddedModel(ABC):

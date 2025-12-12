@@ -1,8 +1,8 @@
 from typing import Final
 from apollo.hippocampus.hippocampus import Hippocampus
-from apollo.shared.impulse import Impulse
-from apollo.shared.impulse_type import ImpulseType
-from apollo.shared.prompt import Prompt
+from apollo.shared.entities.impulse import Impulse
+from apollo.shared.entities.impulse_type import ImpulseType
+from apollo.shared.entities.prompt import Prompt
 from apollo.thalamus.thalamus import Thalamus
 
 

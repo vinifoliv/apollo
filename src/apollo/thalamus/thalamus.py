@@ -1,8 +1,8 @@
 from collections import defaultdict
 from typing import Callable, TypeAlias
 
-from apollo.shared.impulse import Impulse
-from apollo.shared.impulse_type import ImpulseType
+from apollo.shared.entities.impulse import Impulse
+from apollo.shared.entities.impulse_type import ImpulseType
 
 
 Listener: TypeAlias = Callable[[Impulse], None]
