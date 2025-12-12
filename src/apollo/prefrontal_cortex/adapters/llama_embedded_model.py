@@ -2,13 +2,8 @@ from typing import cast, override
 import requests
 import json
 
-from apollo.prefrontal_cortex.embedded_model.embedded_model import EmbeddedModel
-from apollo.prefrontal_cortex.embedded_model.system_prompts.analyze_system_prompt import (
-    analyze_system_prompt,
-)
-from apollo.prefrontal_cortex.embedded_model.system_prompts.classify_system_prompt import (
-    classify_system_prompt,
-)
+from apollo.prefrontal_cortex.interfaces.embedded_model import EmbeddedModel
+from apollo.prefrontal_cortex.utils import analyze_system_prompt, classify_system_prompt
 from apollo.shared.entities.prompt import Prompt
 from apollo.shared.entities.task import Task
 from apollo.shared.entities.task_type import TaskType

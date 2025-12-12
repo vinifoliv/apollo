@@ -1,7 +1,7 @@
 from typing import Final, cast
 
 from apollo.hippocampus.hippocampus import Hippocampus
-from apollo.prefrontal_cortex.embedded_model.embedded_model import EmbeddedModel
+from apollo.prefrontal_cortex.interfaces.embedded_model import EmbeddedModel
 from apollo.shared.entities.impulse import Impulse
 from apollo.shared.entities.impulse_type import ImpulseType
 from apollo.shared.entities.prompt import Prompt

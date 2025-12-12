@@ -2,10 +2,8 @@ from apollo.hippocampus import hippocampus
 from apollo.peripheral_nervous_system.peripheral_nervous_system import (
     PeripheralNervousSystem,
 )
-from apollo.prefrontal_cortex.embedded_model.llama_embedded_model import (
-    LlamaEmbeddedModel,
-)
-from apollo.prefrontal_cortex.prefrontal_cortex import PrefrontalCortex
+from apollo.prefrontal_cortex.entities.prefrontal_cortex import PrefrontalCortex
+from apollo.prefrontal_cortex.adapters.llama_embedded_model import LlamaEmbeddedModel
 from apollo.shared.loguru_logger import LoguruLogger
 from apollo.thalamus.thalamus import Thalamus
 
