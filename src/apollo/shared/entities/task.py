@@ -78,9 +78,9 @@ class Task:
 
         return (
             f"Task ("
-            f"uuid: {self._uuid}"
-            f"timestamp: {formatted_timestamp}"
-            f"type: {self._type}"
-            f"description: {shortened_description}"
+            f"uuid={self._uuid}, "
+            f"timestamp={formatted_timestamp}, "
+            f"type={self._type}, "
+            f"description={shortened_description}"
             f")"
         )

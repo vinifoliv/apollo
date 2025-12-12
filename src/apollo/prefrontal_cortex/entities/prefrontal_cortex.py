@@ -43,8 +43,12 @@ class PrefrontalCortex:
 
         self._logger.info("[TRACE] [PrefrontalCortex] analyzing prompt")
         tasks = self._embedded_model.analyze(prompt=cast(Prompt, prompt))
+        for task in tasks:
+            self._logger.info(f"[PrefrontalCortex] {task}")
 
         self._logger.info("[TRACE] [PrefrontalCortex] classifying tasks")
         self._embedded_model.classify(tasks)
+        for task in tasks:
+            self._logger.info(f"[PrefrontalCortex] {task}")
 
         self._logger.info("[TRACE] [PrefrontalCortex] intrepreting complete")
