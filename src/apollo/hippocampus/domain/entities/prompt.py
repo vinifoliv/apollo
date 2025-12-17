@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import override
 from uuid import uuid4, UUID
 
-from apollo.shared.entities.artifact import Artifact
+from apollo.hippocampus.domain.entities.artifact import Artifact
 
 
 class Prompt(Artifact):

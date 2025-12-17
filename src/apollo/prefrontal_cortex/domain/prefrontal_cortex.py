@@ -1,12 +1,12 @@
 from typing import Final, cast
 
-from apollo.hippocampus.hippocampus import Hippocampus
+from apollo.hippocampus.domain.entities.hippocampus import Hippocampus
+from apollo.hippocampus.domain.entities.impulse import Impulse
+from apollo.hippocampus.domain.entities.impulse_type import ImpulseType
+from apollo.hippocampus.domain.entities.prompt import Prompt
+from apollo.logger.interfaces.logger import Logger
 from apollo.prefrontal_cortex.interfaces.embedded_model import EmbeddedModel
-from apollo.shared.entities.impulse import Impulse
-from apollo.shared.entities.impulse_type import ImpulseType
-from apollo.shared.entities.prompt import Prompt
-from apollo.shared.interfaces.logger import Logger
-from apollo.thalamus.thalamus import Thalamus
+from apollo.thalamus.domain.thalamus import Thalamus
 
 
 class PrefrontalCortex:

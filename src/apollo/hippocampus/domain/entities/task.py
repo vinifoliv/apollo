@@ -2,9 +2,9 @@ from datetime import datetime
 from typing import override
 from uuid import UUID, uuid4
 
-from apollo.shared.entities.artifact import Artifact
-from apollo.shared.entities.prompt import Prompt
-from apollo.shared.entities.task_type import TaskType
+from apollo.hippocampus.domain.entities.artifact import Artifact
+from apollo.hippocampus.domain.entities.prompt import Prompt
+from apollo.hippocampus.domain.entities.task_type import TaskType
 
 
 class Task:

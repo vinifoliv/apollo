@@ -24,6 +24,7 @@ venv.bak/
 *.pyproj
 *.tmp
 *.bak
+*.bkp
 *.swp
 *.DS_Store
 Thumbs.db

@@ -1,6 +1,7 @@
 from collections import defaultdict
 from uuid import UUID
-from apollo.shared.entities.artifact import Artifact
+
+from apollo.hippocampus.domain.entities.artifact import Artifact
 
 
 class Hippocampus:

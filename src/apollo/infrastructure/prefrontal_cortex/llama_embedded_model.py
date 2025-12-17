@@ -2,12 +2,16 @@ from typing import cast, override
 import requests
 import json
 
+from apollo.hippocampus.domain.entities.prompt import Prompt
+from apollo.hippocampus.domain.entities.task import Task
+from apollo.hippocampus.domain.entities.task_type import TaskType
+from apollo.prefrontal_cortex.domain.utils.analyze_system_prompt import (
+    analyze_system_prompt,
+)
+from apollo.prefrontal_cortex.domain.utils.classify_system_prompt import (
+    classify_system_prompt,
+)
 from apollo.prefrontal_cortex.interfaces.embedded_model import EmbeddedModel
-from apollo.prefrontal_cortex.utils.analyze_system_prompt import analyze_system_prompt
-from apollo.prefrontal_cortex.utils.classify_system_prompt import classify_system_prompt
-from apollo.shared.entities.prompt import Prompt
-from apollo.shared.entities.task import Task
-from apollo.shared.entities.task_type import TaskType
 
 
 class LlamaEmbeddedModel(EmbeddedModel):

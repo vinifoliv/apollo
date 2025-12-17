@@ -2,7 +2,7 @@ from uuid import UUID, uuid4
 from datetime import datetime
 from typing import Final
 
-from apollo.shared.entities.impulse_type import ImpulseType
+from apollo.hippocampus.domain.entities.impulse_type import ImpulseType
 
 
 class Impulse:

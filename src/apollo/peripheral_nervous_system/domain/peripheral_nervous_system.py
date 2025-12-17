@@ -1,9 +1,9 @@
 from typing import Final
-from apollo.hippocampus.hippocampus import Hippocampus
-from apollo.shared.entities.impulse import Impulse
-from apollo.shared.entities.impulse_type import ImpulseType
-from apollo.shared.entities.prompt import Prompt
-from apollo.thalamus.thalamus import Thalamus
+from apollo.hippocampus.domain.entities.hippocampus import Hippocampus
+from apollo.hippocampus.domain.entities.impulse import Impulse
+from apollo.hippocampus.domain.entities.impulse_type import ImpulseType
+from apollo.hippocampus.domain.entities.prompt import Prompt
+from apollo.thalamus.domain.thalamus import Thalamus
 
 
 class PeripheralNervousSystem:

@@ -1,6 +1,7 @@
 from typing import Any, override
-from apollo.shared.interfaces.logger import Logger
 from loguru import logger
+
+from apollo.logger.interfaces.logger import Logger
 
 
 class LoguruLogger(Logger):
